@@ -1,0 +1,35 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           /blog/:title
+relative_permalinks: false
+
+# Setup
+title:               Steve J Brown
+tagline:             Data Science
+url:
+paginate:            5
+baseurl:             ""
+
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+# About/contact
+author:
+  name:              Steve Brown
+  url:
+
+# Custom vars
+version:             2.0.0
+github:
+  repo:              https://github.com/poole/poole
+
+pages_list:
+    About: '/about'
+    Blog: '/blog'
+# Uncomment and add to pages_list to have a feed page
+# Feed: '/atom.xml'
