@@ -16,7 +16,7 @@ than everyone else.
 If you have ever watched or played Path of Exile, you probably had a number of
 questions: Is there a preferred class? How consistent are the top racers? Are
 certain races quantifiably more difficult than others (how _much_ worse is BLAMT
-worse than exiles everywhere)? Puzzles solved, debates settled! I scraped the
+than exiles everywhere)? Puzzles solved, debates settled! I scraped the
 entire Path of Exile database for the race results of 5140057 characters over
 5222 leagues to answer these very queries [perplexities, conundrums].
 
@@ -66,7 +66,7 @@ out of popularity. After its release, the scion quickly became the most played
 class. Over time interest in the scion has waned and in the past 12 months
 players have started to favor racing rangers.
 
-[TODO: fix plot so it's readable]
+[TODO: See what's up with the weird scion bump at early times (is it the Void league or Standard league?)]
 
 ![Class popularity over time](/public/poe_class_popularity_vs_time.png)
 
@@ -110,8 +110,6 @@ ten more than a quarter of the time.
 
 [TODO: Smooth out plots ]
 
-[TODO: Make plots on consistent scale]
-
 ## Race difficulty
 
 It seems clear that some races are more difficult than others: a Lethal mod race
@@ -121,11 +119,116 @@ difficulty is not immediately straightforward. If we look at the experience
 histogram for characters in an event, it always has roughly an exponential
 decay.
 
-[TODO: add an example plot here]
-![Race experience histogram]()
+![Race experience histogram](/public/poe_experience_example.png)
 
-There's a pile up of characters at low levels who die early on and then a long tail of higher performers. I would claim that in the more difficult races there's a larger disparity between these two populations. And this we can quantify using the skew of the distribution.
+There's a pile up of characters at low levels who die early on and then a long
+tail of higher performers. I would claim that in the more difficult races
+there's a larger disparity between these two populations. And this we can
+quantify using the skew of the distribution. Specifically I used the adjusted
+Fisher-Pearson standardized moment coefficient G1 built into most statistical
+packages including pandas.
 
-[TODO: Add pandas skew definition]
+| League id                        |      Skew |
+|----------------------------------|----------:|
+| Void                             | 38.489430 |
+| 6 Hour Cutthroat (C01E006)       | 24.641083 |
+| 48 Hour Cutthroat (C01E010)      | 24.050988 |
+| 12 Hour Cutthroat (C01E005)      | 20.607926 |
+| 3 Day Exiles Event HC (IC010)    | 20.289373 |
+| 1h BLAMT Party (FRW017)          | 20.133271 |
+| 1 Week Cutthroat (IV008)         | 19.344031 |
+| 5 Hour Cutthroat Party (S03F119) | 16.439814 |
+| 2h BLAMT Party (MDC056)          | 16.046994 |
+| 1 Hour FBLAMT Party (S06F169)    | 15.788544 |
+| 2h BLAMT Party (MDC117)          | 15.630826 |
+| 1h BLAMT Party (FRW011)          | 14.040574 |
+| 1h BLAMT Party (ERW011)          | 13.756645 |
+| SG_Void                          | 13.668209 |
+| 4 Hour Cutthroat (C01E004)       | 13.176868 |
+| 6 Hour Cutthroat (C01E008)       | 12.994884 |
+| 3 Hour Cutthroat (C01E003)       | 12.877636 |
+| 135M Lethal Rogue Solo (S03F124) | 12.583898 |
+| SG_Invasion                      | 11.946815 |
+| 24 Hour Endless Ledge (I018)     | 11.919397 |
+| 1 Hr Exiles Everywhere (S10C013) | 11.658561 |
+| 1 Hr Exiles Everywhere (S07F070) | 11.356278 |
+| 6 Hour Cutthroat (C01E009)       | 10.940696 |
+| 2Hr Lethal Rogue Party (S05F069) | 10.745195 |
+| 1h BLAMT Party (ERW017)          | 10.695287 |
+| 1 Hour BLAMT Solo (S03F042)      | 10.668457 |
+| 90 Minute Lethal Party (S05F121) | 10.638022 |
+| 1 Hour ELBLAMT (S07F151)         | 10.580864 |
+| BLAMT Party (WHC139)             | 10.551859 |
+| 3 Hour LI Party (S08F188)        | 10.508291 |
+|                                  |       ... |
+| SG_Solo Burst (STC032C)          |  0.256644 |
+| 12 Min Burst (MDC034C)           |  0.254683 |
+| SG_2 Min Solo Burst 2 (S03F091B) |  0.253730 |
+| 12 Min Burst (MDC079C)           |  0.250269 |
+| 12 Min Burst (MDC042B)           |  0.249229 |
+| 12 Min Burst (MDC009C)           |  0.245536 |
+| 12 Min Burst (MDC042C)           |  0.241469 |
+| SG_2 Min Solo Burst 3 (S03F093C) |  0.233932 |
+| SG_2 Min Solo Burst 2 (S02F040B) |  0.226202 |
+| SG_Descent (STC002)              |  0.219688 |
+| 12м Соло, Хет-трик (WHC010C)     |  0.209626 |
+| SG_2 Min Solo Burst 3 (S04C039C) |  0.207356 |
+| SG_Solo Burst (WHC034A)          |  0.204617 |
+| SG_12 Min Burst (MDC025A)        |  0.188926 |
+| SG_Solo Burst (STC032B)          |  0.151391 |
+| SG_2 Min Solo Burst 2 (S04C066B) |  0.135552 |
+| SG_Ledge Burst (STC037B)         |  0.128938 |
+| SG_12 Min Burst (MDC025B)        |  0.126806 |
+| SG_Solo Burst (WHC015C)          |  0.118678 |
+| SG_2 Min Solo Burst 3 (S06F051C) |  0.092344 |
+| SG_2 Min Solo Burst 3 (S03F072C) |  0.078516 |
+| 12м Соло, Хет-трик (WHC062B)     |  0.042947 |
+| SG_12 Min Solo Burst (BGC045A)   |  0.024881 |
+| SG_2 Min Solo Burst 1 (S04C066A) |  0.007844 |
+| More events                      |  0.000000 |
+| SG_150m No-Proj Solo (S03C052)   |  0.000000 |
+| SG_2 Min Solo Burst 2 (S04C095B) | -0.037703 |
+| 1 Hour Endless Ledge (S07F004)   | -0.423922 |
+| SG_Solo Burst (WHC034B)          | -0.561473 |
+| SG_Endless Ledge (STC036)        | -1.244535 |
 
-[TODO: Add head and tail of race skews]
+
+Let's digest this. Leagues with high skew include Void, Cutthroat, exiles
+everywhere, and BLAMT. Leagues with low skew are mostly short vanilla Burst
+races. Endless ledge seems to vary in skew possibly based on race length.
+
+The top league is the Void league. Certain races allow characters access to rare
+items or currencies at a much higher rate than normal (e.g. Descent races take
+place in a dungeon completely separate from the main game with different drop
+rates). Since moving these character's into the normal league would upset game
+balance, these are moved into a special Void league. Once characters are in the
+Void league they can only be viewed, not played. Since it is populated with
+characters from the most "broken" leagues which can snowball (and from races
+with different time lengths), it makes sense that it would be highly skewed.
+
+Cutthroat centers around killing other players for loot and experience. Not
+surprisingly most characters get killed at low levels while some snowball by
+coming out on top early.
+
+The 3 Day Exiles Event HC is the deadly exiles everywhere race discussed
+earlier.
+
+BLAMT is a perennial masochistic race the stands for **B**lood magic,
+**L**ethal, **A**ncestral, **M**ulti-projectile, **T**urbo. This means
+characters use health instead of mana for skills, monsters do 50% extra normal
+damage and 50% normal damage as each element, there are many more enemey buff
+totems, enemies fire four additional projectiles, _and_ monsters move, cast, and
+attack 60% faster.
+
+In contrast Burst races have no modifiers and the objective is to get as much
+experience as possible in the time limit. It makes sense that there is a lot
+less skew in experience for a 12 minute Burst race.
+
+While it's pretty easy to say that BLAMT races are more difficult than Burst
+races, it's unclear whether BLAMT is significantly more difficult than Exiles
+Everywhere given this cursory analysis. That's one question we'll have to leave
+for another post.
+
+[TODO: Do a keyword search for BLAMT, Cutthroat, Exiles, Burst to see their average (maybe median would be best) skew]
+
+[TODO: Write conclusion]
