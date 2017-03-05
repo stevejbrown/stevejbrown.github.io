@@ -66,8 +66,6 @@ out of popularity. After its release, the scion quickly became the most played
 class. Over time interest in the scion has waned and in the past 12 months
 players have started to favor racing rangers.
 
-[TODO: See what's up with the weird scion bump at early times (is it the Void league or Standard league?)]
-
 ![Class popularity over time](/public/poe_class_popularity_vs_time.png)
 
 [TODO: Plot of class wins over time]
@@ -80,8 +78,6 @@ consistently given the random number generator (RNG)? Yes, yes you can. Look at
 one of PoE's most famous racers Kripparrian.
 
 ![Kripp race consistency](/public/poe_kripp_consistency.png)
-
-[TODO: Add zoomed in plot/inset]
 
 When he was active in the racing scene, Kripp dominated. He finished first 23%
 (!) of the time, in the top ten in 69% of his races, and in the top 100 in 88%
@@ -107,8 +103,6 @@ Over 133 events ZiggyD has placed first overall 0%, top ten 1.5%, and top 100
 31% of the time. So yes there is some RNG in Path of Exile, but the very best
 racers can consistently break the top 100 in the majority of their races and top
 ten more than a quarter of the time.
-
-[TODO: Smooth out plots ]
 
 ## Race difficulty
 
