@@ -122,70 +122,9 @@ quantify using the skew of the distribution. Specifically I used the adjusted
 Fisher-Pearson standardized moment coefficient G1 built into most statistical
 packages including pandas.
 
-| League id                        |      Skew |
-|----------------------------------|----------:|
-| Void                             | 38.489430 |
-| 6 Hour Cutthroat (C01E006)       | 24.641083 |
-| 48 Hour Cutthroat (C01E010)      | 24.050988 |
-| 12 Hour Cutthroat (C01E005)      | 20.607926 |
-| 3 Day Exiles Event HC (IC010)    | 20.289373 |
-| 1h BLAMT Party (FRW017)          | 20.133271 |
-| 1 Week Cutthroat (IV008)         | 19.344031 |
-| 5 Hour Cutthroat Party (S03F119) | 16.439814 |
-| 2h BLAMT Party (MDC056)          | 16.046994 |
-| 1 Hour FBLAMT Party (S06F169)    | 15.788544 |
-| 2h BLAMT Party (MDC117)          | 15.630826 |
-| 1h BLAMT Party (FRW011)          | 14.040574 |
-| 1h BLAMT Party (ERW011)          | 13.756645 |
-| SG_Void                          | 13.668209 |
-| 4 Hour Cutthroat (C01E004)       | 13.176868 |
-| 6 Hour Cutthroat (C01E008)       | 12.994884 |
-| 3 Hour Cutthroat (C01E003)       | 12.877636 |
-| 135M Lethal Rogue Solo (S03F124) | 12.583898 |
-| SG_Invasion                      | 11.946815 |
-| 24 Hour Endless Ledge (I018)     | 11.919397 |
-| 1 Hr Exiles Everywhere (S10C013) | 11.658561 |
-| 1 Hr Exiles Everywhere (S07F070) | 11.356278 |
-| 6 Hour Cutthroat (C01E009)       | 10.940696 |
-| 2Hr Lethal Rogue Party (S05F069) | 10.745195 |
-| 1h BLAMT Party (ERW017)          | 10.695287 |
-| 1 Hour BLAMT Solo (S03F042)      | 10.668457 |
-| 90 Minute Lethal Party (S05F121) | 10.638022 |
-| 1 Hour ELBLAMT (S07F151)         | 10.580864 |
-| BLAMT Party (WHC139)             | 10.551859 |
-| 3 Hour LI Party (S08F188)        | 10.508291 |
-|                                  |       ... |
-| SG_Solo Burst (STC032C)          |  0.256644 |
-| 12 Min Burst (MDC034C)           |  0.254683 |
-| SG_2 Min Solo Burst 2 (S03F091B) |  0.253730 |
-| 12 Min Burst (MDC079C)           |  0.250269 |
-| 12 Min Burst (MDC042B)           |  0.249229 |
-| 12 Min Burst (MDC009C)           |  0.245536 |
-| 12 Min Burst (MDC042C)           |  0.241469 |
-| SG_2 Min Solo Burst 3 (S03F093C) |  0.233932 |
-| SG_2 Min Solo Burst 2 (S02F040B) |  0.226202 |
-| SG_Descent (STC002)              |  0.219688 |
-| 12м Соло, Хет-трик (WHC010C)     |  0.209626 |
-| SG_2 Min Solo Burst 3 (S04C039C) |  0.207356 |
-| SG_Solo Burst (WHC034A)          |  0.204617 |
-| SG_12 Min Burst (MDC025A)        |  0.188926 |
-| SG_Solo Burst (STC032B)          |  0.151391 |
-| SG_2 Min Solo Burst 2 (S04C066B) |  0.135552 |
-| SG_Ledge Burst (STC037B)         |  0.128938 |
-| SG_12 Min Burst (MDC025B)        |  0.126806 |
-| SG_Solo Burst (WHC015C)          |  0.118678 |
-| SG_2 Min Solo Burst 3 (S06F051C) |  0.092344 |
-| SG_2 Min Solo Burst 3 (S03F072C) |  0.078516 |
-| 12м Соло, Хет-трик (WHC062B)     |  0.042947 |
-| SG_12 Min Solo Burst (BGC045A)   |  0.024881 |
-| SG_2 Min Solo Burst 1 (S04C066A) |  0.007844 |
-| More events                      |  0.000000 |
-| SG_150m No-Proj Solo (S03C052)   |  0.000000 |
-| SG_2 Min Solo Burst 2 (S04C095B) | -0.037703 |
-| 1 Hour Endless Ledge (S07F004)   | -0.423922 |
-| SG_Solo Burst (WHC034B)          | -0.561473 |
-| SG_Endless Ledge (STC036)        | -1.244535 |
+[TODO: Explain why skew better]
 
+![Race difficulty](/public/poe_race_difficulty.png)
 
 Let's digest this. Leagues with high skew include Void, Cutthroat, exiles
 everywhere, and BLAMT. Leagues with low skew are mostly short vanilla Burst
@@ -223,6 +162,5 @@ races, it's unclear whether BLAMT is significantly more difficult than Exiles
 Everywhere given this cursory analysis. That's one question we'll have to leave
 for another post.
 
-[TODO: Do a keyword search for BLAMT, Cutthroat, Exiles, Burst to see their average (maybe median would be best) skew]
 
 [TODO: Write conclusion]
