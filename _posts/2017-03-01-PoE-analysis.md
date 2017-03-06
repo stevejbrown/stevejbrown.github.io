@@ -63,8 +63,6 @@ players have started to favor racing rangers.
 
 ![Class popularity over time](/public/poe_class_popularity_vs_time.png)
 
-[TODO: Plot of class wins over time]
-
 ## Player consistency
 
 A common debate in games that have randomly generated maps, monsters, and loot
