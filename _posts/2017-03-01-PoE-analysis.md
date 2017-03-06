@@ -18,7 +18,7 @@ questions: Is there a preferred class? How consistent are the top racers? Are
 certain races quantifiably more difficult than others (how _much_ worse is BLAMT
 than exiles everywhere)? Puzzles solved, debates settled! I scraped the
 entire Path of Exile database for the race results of 5140057 characters over
-5222 leagues to answer these very queries [perplexities, conundrums].
+5222 leagues to answer these very conundrums.
 
 ## Basic info
 
@@ -48,14 +48,9 @@ characters), and entertaining. In exiles everywhere, 20 rogue exiles
 out [ZiggyD](https://www.youtube.com/watch?v=t3TBU_Kwbes) racing this event to
 see just how brutal these races are.
 
-[TODO: Make race duration plot for leagues with 15,000 players]
-
 Looking at how events have been distributed over time, we can see there are
 generally 1000+ events a year. There is a noticeable up tick in events after
 both the start of the open beta and the games official release.
-
-[TODO: See if I can make a plot with the seasons overlaid. There are 16 seasons
-listed here: http://pathofexile.gamepedia.com/Races]
 
 ![Events over time](/public/poe_events_over_time.png)
 
