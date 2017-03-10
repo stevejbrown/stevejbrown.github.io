@@ -151,4 +151,12 @@ increasingly difficult monsters after each loop.
 It looks like, on average, Exiles Everywhere races do just a little bit better
 job than BLAMT races of separating the pros from the newbs. Surprised?
 
-[TODO: Write conclusion]
+## Where to from here?
+
+To see the code behind this post (and some more analysis that didn't make the
+cut!) checkout the [github repository](). I encourage you to play with the data
+yourself. There are answers so many questions buried in this data set: how has
+the winning class changed over time? What is the distribution of race lengths?
+Are some players better at certain races than others? Which races are going in
+and out of style? How did the Russian Garena Realm differ from the main GGG
+realm? Which races are most popular? Happy digging!
