@@ -5,13 +5,13 @@ title: Path of Exile Analysis
 
 # Path of Exile Leagues Analysis
 
-Path of Exile is an action role playing game in a similar vein as Diablo. From
-its intricate, unified skill tree to its purely barter economy, PoE has a number
-of unique gameplay mechanics that cater to hard-core gamers. What really sets it
-apart, though, are the races. In these events which last anywhere from 12
-minutes to multiple months, players roll fresh characters, compete under a
-variety of gameplay conditions, and generally try to run through the game faster
-than everyone else.
+Path of Exile is an action role playing game made by Grinding Gear Games (GGG)
+in a similar vein as Diablo. From its intricate, unified skill tree to its
+purely barter economy, PoE has a number of unique gameplay mechanics that cater
+to hard-core gamers. What really sets it apart, though, are the races. In these
+events which last anywhere from 12 minutes to multiple months, players roll
+fresh characters, compete under a variety of gameplay conditions, and generally
+try to run through the game faster than everyone else.
 
 If you have ever watched or played Path of Exile, you probably had a number of
 questions: Is there a preferred class? How consistent are the top racers? Are
