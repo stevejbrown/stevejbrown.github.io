@@ -54,7 +54,7 @@ both the start of the open beta and the games official release.
 
 ![Events over time](/public/poe_events_over_time.png)
 
-## Time series analysis
+## Classes over time
 
 In any competitive game, the metagame is constantly in flux. Classes fade in and
 out of popularity. After its release, the scion quickly became the most played
