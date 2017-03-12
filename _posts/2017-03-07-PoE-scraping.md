@@ -34,7 +34,10 @@ source activate poe_scrape
 {% endhighlight %}
 
 And lastly we'll need to grab and install the pathofexile github repository
-which provides a wrapper for accessing the official api.
+which provides a wrapper for accessing the official api. It currently doesn't
+have a setup.py so to import modules from it, it needs to be cloned in the
+project directory where we'll do the scraping. We'll still need to install its
+requirements of course.
 
 {% highlight bash %}
 git clone https://github.com/willroberts/pathofexile
@@ -153,9 +156,86 @@ for league in league_list:
         write_league_to_table(league, c, 'leagues')
 {% endhighlight %}
 
-This queued our changes to the database, but the changes have not been made yet.
-We need to "commit" the changes for them to take effect.
+Note that I used INSERT OR IGNORE. This attempts to insert a league into the
+database, but if it already exists in the database (has the same unique/primary
+'id' key) then it silently does nothing instead of throwing an error. Running
+this code queued our changes to the database, but the changes have not been made
+yet. We need to "commit" the changes for them to take effect.
 
 {% highlight python %}
 conn.commit()
 {% endhighlight %}
+
+Similarly, we can scrape the ladders.
+
+{% highlight python %}
+import pathofexile.pathofexile.ladder as poe_ladder
+
+league_id = '3 Day Exiles Event HC (IC010)'
+ladder = poe_ladder.retrieve(league_id)
+
+for entry in ladder:
+    if 'twitch' in entry['account']:
+        twitch = entry['account']['twitch']['name']
+    else:
+        twitch = 'NULL'
+    if 'experience' in entry['character']:
+        experience = int(entry['character']['experience'])
+    else:
+        experience = None
+    ladder_tuple = (unicode(league_id),
+                    unicode(entry['account']['name']),
+                    unicode(twitch),
+                    int(entry['account']['challenges']['total']),
+                    unicode(entry['character']['name']),
+                    int(entry['rank']),
+                    unicode(entry['character']['class']),
+                    experience,
+                    int(entry['dead']))
+    cursor.execute(''' INSERT OR IGNORE INTO {}
+                        VALUES (?,?,?,?,?,?,?,?, ?)
+                    '''.format(ladder_table), ladder_tuple)
+                    
+conn.commit()
+{% endhighlight %}
+
+## Cleaning up
+
+Since the ladders table didn't have any unique keys I ended up having many
+repeat entries as I often had to restart the scraper due to hitting a rate limit
+or other error. We'd like to remove these duplicate entries. The idea is simple:
+if multiple rows have the same value for every column, get rid of every
+duplicate row except the first. The trick is to GROUP BY all the columns which
+groups identical rows together and then get DELETE all except the lowest numbered rowid
+in each group.
+
+{% highlight sql %}
+DELETE FROM ladders
+          WHERE rowid NOT IN(
+             SELECT  MIN(rowid)
+             FROM    ladders
+             GROUP BY id, account, twitch, challenges, character, 
+                      rank, class, experience, dead
+             );
+{% endhighlight %}
+
+Now the database is ready to be analyzed!
+
+## Final notes
+
+I ran into a few snags when scraping the PoE data and needed to patch the
+pathofexile library (the changes have already been merged into the library, so
+you shouldn't have to worry about them). The pathofexile library is written in Python 2 which doesn't treat
+strings as unicode out of the box. Since most of the Russian PoE leagues use
+Cyrillic characters (for example Флешбэк одна жизнь (IC002)) I had to explicitly
+use unicode strings (`u'Флешбэк одна жизнь (IC002)'` or `unicode('Флешбэк одна
+жизнь (IC002)')`). Also some leagues had a "/" in them (e.g.
+'OneWeekHCRampage/Beyond'). This doesn't seem like a big deal but pathofexile is
+setup to create a cache for when you are repeatedly polling ladders and uses the
+league name to name the file. This turns into an error as it creates a directory
+instead of a file. I got around this by just substituting "_" for "/"
+(`'string'.replace('/','_'`).
+
+You can find the full code I used for the scraping on [github](). And make sure to read
+the [analysis article]({{ site.baseurl }}{% post_url 2017-03-01-PoE-analysis %})
+to see all the insights buried in this data!
