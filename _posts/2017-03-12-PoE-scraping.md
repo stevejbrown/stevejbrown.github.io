@@ -5,7 +5,7 @@ title: Path of Exile Scraping
 
 To get the data for
 my
-[Path of Exile analysis]({{ site.baseurl }}{% post_url 2017-03-01-PoE-analysis %}) I
+[Path of Exile analysis]({{ site.baseurl }}{% post_url 2017-03-12-PoE-analysis %}) I
 scraped all the leagues and ladders from the Path of Exile (PoE) official API
 into an SQLite table. If you've never used SQLite before, it's easy and I'll
 show you how I set it up so you can use it in your own projects. I'll also go
@@ -243,5 +243,5 @@ it creates a directory instead of a file. I got around this by just substituting
 
 You can find the full code I used for the scraping
 on [github](https://github.com/stevejbrown/PoE-analysis). And make sure to read
-the [analysis article]({{ site.baseurl }}{% post_url 2017-03-01-PoE-analysis %})
+the [analysis article]({{ site.baseurl }}{% post_url 2017-03-12-PoE-analysis %})
 to see all the insights buried in this data!

@@ -20,7 +20,7 @@ certain races quantifiably more difficult than others (how _much_ worse is BLAMT
 than Exiles Everywhere)? Puzzles solved, debates settled! I scraped the entire
 Path of Exile database for the race results of 5,140,057 characters over 5,222
 leagues to answer these very conundrums. You can read about how I did the
-scraping [here]({{ site.baseurl }}{% post_url 2017-03-07-PoE-scraping%}).
+scraping [here]({{ site.baseurl }}{% post_url 2017-03-12-PoE-scraping%}).
 
 ## Basic info
 
