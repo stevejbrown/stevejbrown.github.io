@@ -35,7 +35,7 @@ source activate poe_scrape
 
 And lastly we'll need to grab and install the pathofexile github repository
 which provides a wrapper for accessing the official api. It currently doesn't
-have a setup.py so to import modules from it, it needs to be cloned in the
+have a setup.py to import modules from it, so it needs to be cloned in the
 project directory where we'll do the scraping. We'll still need to install its
 requirements of course.
 
@@ -120,7 +120,7 @@ league_list = poe.get_leagues(league_type='all',
                                       league_offset=0)
 {% endhighlight %}
 
-Now we can connect to the database and add our leagues. First we'll make a
+Next we can connect to the database and add our leagues. First we'll make a
 connection and then grab a cursor that allows us to run SQL commands on the
 database.
 
@@ -166,7 +166,8 @@ yet. We need to "commit" the changes for them to take effect.
 conn.commit()
 {% endhighlight %}
 
-Similarly, we can scrape the ladders.
+Similarly, we can scrape the ladders. Here's an example for the league '3 Day
+Exiles Event HC (IC010)'.
 
 {% highlight python %}
 import pathofexile.pathofexile.ladder as poe_ladder
@@ -201,13 +202,14 @@ conn.commit()
 
 ## Cleaning up
 
+I often had to restart the scraper due to hitting a rate limit or other error
+and, because of this, I would accidentally scrape the same entry more than once.
 Since the ladders table didn't have any unique keys I ended up having many
-repeat entries as I often had to restart the scraper due to hitting a rate limit
-or other error. We'd like to remove these duplicate entries. The idea is simple:
-if multiple rows have the same value for every column, get rid of every
-duplicate row except the first. The trick is to GROUP BY all the columns which
-groups identical rows together and then get DELETE all except the lowest numbered rowid
-in each group.
+duplicates. We'd like to remove these duplicate entries. The idea for removing
+them is simple: if multiple rows have the same value for every column, then get
+rid of each of these duplicate rows except the first. The trick is to GROUP BY
+all the columns (which groups identical rows together) and then DELETE all
+except the lowest numbered rowid in each group.
 
 {% highlight sql %}
 DELETE FROM ladders
@@ -224,18 +226,22 @@ Now the database is ready to be analyzed!
 ## Final notes
 
 I ran into a few snags when scraping the PoE data and needed to patch the
-pathofexile library (the changes have already been merged into the library, so
-you shouldn't have to worry about them). The pathofexile library is written in Python 2 which doesn't treat
-strings as unicode out of the box. Since most of the Russian PoE leagues use
-Cyrillic characters (for example Флешбэк одна жизнь (IC002)) I had to explicitly
-use unicode strings (`u'Флешбэк одна жизнь (IC002)'` or `unicode('Флешбэк одна
-жизнь (IC002)')`). Also some leagues had a "/" in them (e.g.
-'OneWeekHCRampage/Beyond'). This doesn't seem like a big deal but pathofexile is
-setup to create a cache for when you are repeatedly polling ladders and uses the
-league name to name the file. This turns into an error as it creates a directory
-instead of a file. I got around this by just substituting "_" for "/"
-(`'string'.replace('/','_'`).
+pathofexile library. The changes have already been merged into the library, so
+you shouldn't have to worry about them, but they're good to keep in mind for
+your own scraping projects. 
 
-You can find the full code I used for the scraping on [github](). And make sure to read
+The pathofexile library is written in Python 2 which
+doesn't treat strings as unicode out of the box. Since most of the Russian PoE
+leagues use Cyrillic characters (for example Флешбэк одна жизнь (IC002)) I had
+to explicitly use unicode strings (`u'Флешбэк одна жизнь (IC002)'` or
+`unicode('Флешбэк одна жизнь (IC002)')`). Also some leagues had a "/" in them
+(e.g. 'OneWeekHCRampage/Beyond'). This doesn't seem like a big deal but
+pathofexile is setup to create a cache for when you are repeatedly polling
+ladders and uses the league name to name the file. This turns into an error as
+it creates a directory instead of a file. I got around this by just substituting
+"_" for "/" (`'string'.replace('/','_'`).
+
+You can find the full code I used for the scraping
+on [github](https://github.com/stevejbrown/PoE-analysis). And make sure to read
 the [analysis article]({{ site.baseurl }}{% post_url 2017-03-01-PoE-analysis %})
 to see all the insights buried in this data!
