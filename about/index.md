@@ -4,10 +4,11 @@ title: About
 ---
 
 I'm a PhD candidate in Materials at the University of California, Santa Barbara
-where I study Fourier imaging and the optical properties of next generation
-solar cell materials. I am a big believer in the scientific method and using
-data to both reveal underlying truths and make decisions. I can be reached at
-steve [at] stevejbrown.com.
+with a passion for data science and machine learning. I am a big believer in the
+scientific method and using data to both reveal underlying truths and make
+decisions. You can find me on [github](https://github.com/stevejbrown) and
+[linkedin](https://www.linkedin.com/in/brownstevej/). I can be reached at steve
+[at] stevejbrown.com.
 
 ## Website
 
