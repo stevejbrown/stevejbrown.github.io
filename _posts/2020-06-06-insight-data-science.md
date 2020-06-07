@@ -3,8 +3,6 @@ layout: post
 title: Insight Data Science
 ---
 
-# Insight Data Science
-
 ## Introduction
 
 A couple years ago I participated in the [Insight Data Science fellowship](https://www.insightdatascience.com/) in Silicon Valley. Insight is a 7 week program to bridge the gap between academia and data science in industry. It has grown to offer fellowships in data science, data engineering, artificial intelligence, and more in multiple cities throughout the US and Canada. When I was deciding whether to do the program, I read several very helpful blog posts by past fellows including a [three-part series](https://www.ethanrosenthal.com/2015/09/23/start-to-insight/) by Ethan Rosenthal. This is my attempt to pay it forward and answer questions you may have.
